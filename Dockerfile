@@ -8,8 +8,9 @@ RUN /bin/bash -l -c "\
         cmake /opt/FairShip -DCMAKE_INSTALL_PREFIX=$(pwd) -DCMAKE_CXX_COMPILER=$(/opt/FairSoftInst/bin/fairsoft-config --cxx) -DCMAKE_C_COMPILER=$(/opt/FairSoftInst/bin/fairsoft-config --cc) &&\
         make"
 
-
-RUN /bin/bash -l -c "yum -y install numpy"
+RUN yum -y install yum-plugin-ovl
+RUN cat /etc/yum.conf
+RUN yum -y install numpy
 RUN yum -y autoremove
 RUN find /usr/share/locale | grep -v en | xargs rm -rf
 RUN yum clean all
