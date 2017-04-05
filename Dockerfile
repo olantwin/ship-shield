@@ -9,7 +9,6 @@ RUN /bin/bash -l -c "\
         make"
 
 RUN yum -y install yum-plugin-ovl
-RUN cat /etc/yum.conf
 RUN yum -y install numpy
 RUN yum -y autoremove
 RUN find /usr/share/locale | grep -v en | xargs rm -rf
