@@ -2,7 +2,7 @@ FROM scr4t/ship-base:13.03.2017
 
 RUN /bin/bash -l -c "\
         rm -rf opt/FairShipRun /opt/FairShip &&\
-        git clone -b skygrid https://github.com/olantwin/FairShip.git /opt/FairShip  &&\
+        git clone -b optimisation_shield https://github.com/olantwin/FairShip.git /opt/FairShip  &&\
         mkdir -p /opt/FairShip/../FairShipRun &&\
         cd /opt/FairShip/../FairShipRun &&\
         cmake /opt/FairShip -DCMAKE_INSTALL_PREFIX=$(pwd) -DCMAKE_CXX_COMPILER=$(/opt/FairSoftInst/bin/fairsoft-config --cxx) -DCMAKE_C_COMPILER=$(/opt/FairSoftInst/bin/fairsoft-config --cc) &&\
