@@ -6,6 +6,7 @@ RUN yum -y install python2-pip
 RUN yum -y autoremove
 RUN find /usr/share/locale | grep -v en | xargs rm -rf
 RUN yum clean all
+RUN pip install scikit-optimize
 RUN pip install git+https://github.com/skygrid/libscheduler.git
 
 RUN /bin/bash -l -c "\
