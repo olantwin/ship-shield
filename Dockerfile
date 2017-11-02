@@ -19,7 +19,7 @@ RUN /bin/bash -l -c "\
 RUN /bin/bash -l -c "\
         git clone -b disneyland https://github.com/olantwin/muon_shield_optimisation.git /code &&\
         cd /code &&\
-        git checkout 3d7cb098700595b8ec320d0c8bc5d7261a8b48fe"
+        git checkout e5ac7d85bd67ede8c75a4473f3732bce2e02bfdf"
 
 RUN /bin/bash -l -c "\
         source /opt/FairShipRun/config.sh &&\
