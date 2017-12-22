@@ -1,16 +1,19 @@
 FROM scr4t/ship-base:13.03.2017
 
-RUN yum -y install yum-plugin-ovl
-RUN yum -y install python2-pip
-RUN yum -y autoremove
-RUN find /usr/share/locale | grep -v en | xargs rm -rf
-RUN yum clean all
+ENV FAIRSHIP_COMMIT 8e38dddd016bcaa113b64f9956296270abdb2b69
+ENV OPTIMISATION_COMMIT ge4fcdfb
+
+RUN yum -y install yum-plugin-ovl \
+        python2-pip \
+        && yum -y autoremove \
+        && find /usr/share/locale | grep -v en | xargs rm -rf \
+        && yum clean all
 
 RUN /bin/bash -l -c "\
         rm -rf opt/FairShipRun /opt/FairShip &&\
         git clone -b optimisation_shield https://github.com/olantwin/FairShip.git /opt/FairShip  &&\
         cd /opt/FairShip &&\
-        git checkout 8e38dddd016bcaa113b64f9956296270abdb2b69 &&\
+        git checkout $FAIRSHIP_COMMIT &&\
         mkdir -p /opt/FairShip/../FairShipRun &&\
         cd /opt/FairShip/../FairShipRun &&\
         cmake /opt/FairShip -DCMAKE_INSTALL_PREFIX=$(pwd) -DCMAKE_CXX_COMPILER=$(/opt/FairSoftInst/bin/fairsoft-config --cxx) -DCMAKE_C_COMPILER=$(/opt/FairSoftInst/bin/fairsoft-config --cc) &&\
@@ -19,7 +22,7 @@ RUN /bin/bash -l -c "\
 RUN /bin/bash -l -c "\
         git clone -b disneyland https://github.com/olantwin/muon_shield_optimisation.git /code &&\
         cd /code &&\
-        git checkout 9fd03c18c2a41afa90f135e1ff0794444e09c742"
+        git checkout $OPTIMISATION_COMMIT"
 
 RUN /bin/bash -l -c "\
         source /opt/FairShipRun/config.sh &&\
