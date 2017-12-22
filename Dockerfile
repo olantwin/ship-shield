@@ -1,7 +1,7 @@
 FROM scr4t/ship-base:13.03.2017
 
 ENV FAIRSHIP_COMMIT 8e38dddd016bcaa113b64f9956296270abdb2b69
-ENV OPTIMISATION_COMMIT ge4fcdfb
+ENV OPTIMISATION_COMMIT e4fcdfb3279bf0a13b0ff2c97db3019d67e77c1e
 
 RUN yum -y install yum-plugin-ovl \
         python2-pip \
